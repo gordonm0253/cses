@@ -4,7 +4,7 @@ Progress: https://cses.fi/user/339036
 
 Introductory Problems: 21/24  
 Sorting and Searching: 9/35  
-Dynamic Programming: 0/23  
+Dynamic Programming: 8/23  
 Graph Algorithms: 6/36  
 Range Queries: 0/25  
 Tree Algorithms: 0/16  
