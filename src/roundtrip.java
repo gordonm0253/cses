@@ -12,41 +12,54 @@ public class roundtrip {
         boolean[] visited = new boolean[n + 1];
         for (int i = 1; i <= n && !found; i++) {
             if (!visited[i]) {
-                found = bfs(graph, visited, i, n);
+                StringBuilder sb = new StringBuilder();
+                found = dfs(graph, visited, i, n, sb);
+                if (found) {
+                    String str = sb.toString();
+                    String[] split = str.split(" ");
+                    HashMap<String, Integer> map = new HashMap<>();
+                    boolean foundMatching = false;
+                    int i1 = 0;
+                    int i2 = 0;
+                    for (int j = 0; j < split.length && !foundMatching; j++) {
+                        if (map.containsKey(split[j])) {
+                            i1 = map.get(split[j]);
+                            i2 = j;
+                            foundMatching = true;
+                        }
+                        map.put(split[j], j);
+                    }
+                    if (!foundMatching) {
+                        found = false;
+                        continue;
+                    }
+                    StringBuilder finalStr = new StringBuilder();
+                    int ct = 0;
+                    for (int j = i1; j <= i2; j++) {
+                        finalStr.append(split[j]).append(" ");
+                        ct++;
+                    }
+                    finalStr.deleteCharAt(finalStr.length() - 1);
+                    System.out.println(ct);
+                    System.out.println(finalStr);
+                }
             }
         }
         if (!found) {
             System.out.println("IMPOSSIBLE");
         }
-
     }
 
-    public static boolean bfs(ArrayList<ArrayList<Integer>> graph, boolean[] visited, int start, int n) {
-        Queue<Integer> q = new LinkedList<>();
-        int[] prevNode = new int[n + 1];
-        q.offer(start);
-        visited[start] = true;
-        while (!q.isEmpty()) {
-            int u = q.poll();
-            for (Integer v: graph.get(u)) {
-                if (!visited[v]) {
-                    visited[v] = true;
-                    q.offer(v);
-                    prevNode[v] = u;
-                } else if (visited[v] && prevNode[u] != v) {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(v).append(" ");
-                    int curr = u;
-                    System.out.println(prevNode[u]);
-                    System.out.println(prevNode[v]);
-                    System.out.println(u + " " + v);
-                    while (curr != u) {
-                        sb.append(curr).append(" ");
-                        System.out.println(prevNode[curr]);
-                        curr = prevNode[curr];
-                    }
-                    sb.deleteCharAt(sb.length() - 1);
-                    System.out.println(sb);
+    public static boolean dfs(ArrayList<ArrayList<Integer>> graph, boolean[] visited, int curr, int prev, StringBuilder sb) {
+        if (visited[curr]) {
+            sb.append(curr);
+            return true;
+        }
+        visited[curr] = true;
+        for (Integer v: graph.get(curr)) {
+            if (v != prev) {
+                if (dfs(graph, visited, v, curr, sb)) {
+                    sb.append(" ").append(curr);
                     return true;
                 }
             }
