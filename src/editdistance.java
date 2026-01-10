@@ -1,15 +1,34 @@
 import java.io.InputStream;
 import java.util.*;
 
-public class towers {
+public class editdistance {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         //FastIO sc = new FastIO(System.in);
-        for (int t = sc.nextInt(); t > 0; t--) {
-
+        String s1 = sc.next();
+        String s2 = sc.next();
+        int m = s1.length();
+        int n = s2.length();
+        int[][] dp = new int[m + 1][n + 1];
+        // dp[i][j] = minimum cost to make s1[i:] and s2[j:] equal
+        for (int i = m - 1; i >= 0; i--) {
+            dp[i][n] = dp[i + 1][n] + 1;
         }
+        for (int i = n - 1; i >= 0; i--) {
+            dp[m][i] = dp[m][i + 1] + 1;
+        }
+        for (int i = m - 1; i >= 0; i--) {
+            for (int j = n - 1; j >= 0; j--) {
+                if (s1.charAt(i) == s2.charAt(j)) {
+                    dp[i][j] = dp[i + 1][j + 1];
+                } else {
+                    dp[i][j] = 1 + Math.min(dp[i + 1][j], Math.min(dp[i][j + 1], dp[i + 1][j + 1]));
+                }
+            }
+        }
+        System.out.println(dp[0][0]);
     }
-    
+
     public static ArrayList<ArrayList<Integer>> buildGraph(int n, int m, FastIO sc, boolean directed) throws Exception {
         ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
         for (int i = 0; i <= n; i++) {
@@ -33,8 +52,9 @@ public class towers {
     public static ArrayList<ArrayList<Integer>> buildUndirectedGraph(int n, int m, FastIO sc) throws Exception {
         return buildGraph(n, m, sc, false);
     }
-    
+
     static final Random random = new Random();
+
     static void ruffleSort(int[] a) {
         int n = a.length;
         for (int i = 0; i < n; i++) {
@@ -44,6 +64,7 @@ public class towers {
         }
         Arrays.sort(a);
     }
+
     public static class FastIO {
         InputStream dis;
         byte[] buffer = new byte[1 << 17];

@@ -1,7 +1,7 @@
 import java.io.InputStream;
 import java.util.*;
 
-public class towers {
+public class elevatorrides {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         //FastIO sc = new FastIO(System.in);
