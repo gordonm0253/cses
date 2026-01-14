@@ -3,11 +3,27 @@ import java.util.*;
 
 public class towers {
     public static void main(String[] args) throws Exception {
-        Scanner sc = new Scanner(System.in);
-        //FastIO sc = new FastIO(System.in);
-        for (int t = sc.nextInt(); t > 0; t--) {
-
+        //Scanner sc = new Scanner(System.in);
+        FastIO sc = new FastIO(System.in);
+        int n = sc.nextInt();
+        int[] k = new int[n];
+        for (int i = 0; i < n; i++) {
+            k[i] = sc.nextInt();
         }
+        TreeMap<Integer, Integer> map = new TreeMap<>();
+        int towers = 0;
+        for (int h: k) {
+            Integer stack = map.higherKey(h);
+            if (stack == null) {
+                map.put(h, map.getOrDefault(h, 0) + 1);
+                towers++;
+            } else {
+                map.put(stack, map.get(stack) - 1);
+                if (map.get(stack) == 0) map.remove(stack);
+                map.put(h, map.getOrDefault(h, 0) + 1);
+            }
+        }
+        System.out.println(towers);
     }
     
     public static ArrayList<ArrayList<Integer>> buildGraph(int n, int m, FastIO sc, boolean directed) throws Exception {
