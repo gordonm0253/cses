@@ -3,7 +3,7 @@ CSES Problem Set Solutions
 Progress: https://cses.fi/user/339036
 
 Introductory Problems: 22/24  
-Sorting and Searching: 27/35  
+Sorting and Searching: 28/35  
 Dynamic Programming: 19/23  
 Graph Algorithms: 12/36  
 Range Queries: 1/25  
