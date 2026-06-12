@@ -8,7 +8,7 @@ Dynamic Programming: 19/23
 Graph Algorithms: 12/36  
 Range Queries: 1/25  
 Tree Algorithms: 2/16  
-Math Algorithms: 1/37  
+Math Algorithms: 2/37  
 String Algorithms: 0/21  
 Geometry: 0/16  
 Advanced Techniques: 0/25  
