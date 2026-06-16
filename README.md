@@ -1,6 +1,8 @@
-CSES Problem Set Solutions
+# CSES Problem Set Solutions
 
-Progress: https://cses.fi/user/339036
+So far, I have done almost all solutions in Java, with the exception of a few in C++ (for speed). You can view my profile [here](https://cses.fi/user/339036)!
+
+## Progress
 
 Introductory Problems: 22/24  
 Sorting and Searching: 28/35  
