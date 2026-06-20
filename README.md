@@ -7,7 +7,7 @@ So far, I have done almost all solutions in Java, with the exception of a few in
 Introductory Problems: 22/24  
 Sorting and Searching: 28/35  
 Dynamic Programming: 19/23  
-Graph Algorithms: 13/36  
+Graph Algorithms: 14/36  
 Range Queries: 1/25  
 Tree Algorithms: 2/16  
 Math Algorithms: 2/37  
